@@ -21,9 +21,9 @@ data:
     vm_buffers) / vm_total) * 100.0\r\n\r\n    # Step 3: Compute the moving average\r\n
     \   now = current_time\r\n    sixty_seconds_ago = now - timedelta(seconds=60)\r\n\r\n
     \   results = {\r\n        \"percent-network-egress\": percent_network_egress,\r\n
-    \       \"percent-memory-caching\": percent_memory_cache\r\n    }\r\n\r\n    for
-    cpu_index, usage_value in cpu_usage_map.items():\r\n        if cpu_index not in
-    context.env[\"cpu_hist\"]:\r\n            context.env[\"cpu_hist\"][cpu_index]
+    \       \"percent-memory-caching\": percent_memory_cache,\r\n        \"timestamp\":
+    now.isoformat()\r\n    }\r\n\r\n    for cpu_index, usage_value in cpu_usage_map.items():\r\n
+    \       if cpu_index not in context.env[\"cpu_hist\"]:\r\n            context.env[\"cpu_hist\"][cpu_index]
     = []\r\n\r\n        context.env[\"cpu_hist\"][cpu_index].append((now, usage_value))\r\n\r\n
     \       # Remove data older than 60 seconds.\r\n        history = context.env[\"cpu_hist\"][cpu_index]\r\n
     \       context.env[\"cpu_hist\"][cpu_index] = [\r\n            (t, val) for (t,
@@ -31,11 +31,12 @@ data:
     average CPU usage for the last 60 seconds.\r\n        recent_values = [val for
     (t, val) in context.env[\"cpu_hist\"][cpu_index]]\r\n        avg_cpu_usage = sum(recent_values)
     / len(recent_values) if recent_values else 0.0\r\n\r\n        results[f\"avg-util-cpu{cpu_index}-60sec\"]
-    = avg_cpu_usage\r\n\r\n    #print(results)\r\n    return results\r\n\r\n"
+    = avg_cpu_usage\r\n\r\n    print(f\"{now}\\tFinal env:\")\r\n    #print(context.env)\r\n\r\n
+    \   return results\r\n\r\n"
 kind: ConfigMap
 metadata:
-  creationTimestamp: "2025-01-19T15:09:26Z"
+  creationTimestamp: "2025-01-25T15:34:26Z"
   name: pyfile
   namespace: default
-  resourceVersion: "190003"
-  uid: 588ab589-e463-4c4b-aeaf-4101fbc4a789
+  resourceVersion: "308151"
+  uid: 8499d108-54a0-47c0-a427-a85ca8b87cbc
