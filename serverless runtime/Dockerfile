@@ -18,7 +18,4 @@ COPY . /app
 
 ENV REDIS_HOST=192.168.121.187
 
-
-# Run the application.
-#CMD ["./.venv/bin/fastapi", "run", "app/main.py", "--port", "80", "--host", "0.0.0.0"]
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "main:server"]
+CMD ["python", "app.py"]

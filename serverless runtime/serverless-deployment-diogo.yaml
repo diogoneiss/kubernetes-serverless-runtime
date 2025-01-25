@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: serverless-redis
+  name: custom-serverless-redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: serverless-redis
+      app: custom-serverless-redis
   template:
     metadata:
       labels:
-        app: serverless-redis
+        app: custom-serverless-redis
     spec:
       containers:
-      - name: serverless-redis
+      - name: custom-serverless-redis
         image: diogoneiss/cloud-computing-runtime:latest
         imagePullPolicy: Always
         resources:
