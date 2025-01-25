@@ -1,0 +1,1 @@
+kubectl create configmap pyfile --from-file pyfile=mymodule.py --output yaml

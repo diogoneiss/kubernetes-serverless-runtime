@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  REDIS_OUTPUT_KEY: diogoneiss-proj3-output
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2025-01-13T21:19:55Z"
+  name: outputkey
+  namespace: default
+  resourceVersion: "111293"
+  uid: fb2601b9-687d-4fc2-ac5f-b9990f751220
